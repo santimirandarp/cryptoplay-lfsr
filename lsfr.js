@@ -2,10 +2,10 @@
 
 // LSFR
 
-import { binaryMsg, coefficients:cf } from "./config.js";
+import { binaryMsg, coefficients as cf } from "./config.js";
 
-
-let key = initialRandomBinaryKey(polynomial.length - 1)
+/*
+let key = initialRandomBinaryKey(cf.length - 1)
 
 if(cf){
 
@@ -28,3 +28,4 @@ else {
   // and place the result first in the key
   //'binary encrypt'
 }
+*/

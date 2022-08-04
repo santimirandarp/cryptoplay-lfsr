@@ -1,10 +1,12 @@
+import meow from 'meow';
+
 /* coefficients from high to low
  * for example 10001
  * is 1x^4 +  0x^3 + 0x^2 + 0x + 1
  */ 
-import selectByGrade from 'wikiPolys'; // (idea)
+import selectByGrade from './wikiPolys.js'; // (idea)
+// configuration for the cli utilit
 
-// configuration for the cli utility
 const config =  { 
   importMeta: import.meta, 
   flags:{
@@ -15,12 +17,16 @@ const config =  {
   }
 
 
-//set up of the CLI parser
-const { message, coefficients, grade } = meow("parsing...", config).flags
+const flags = meow("parsing...", config).flags
+
+const { message, grade } = flags;
+let { coefficients } = flags; 
+
+console.log("\n")
 
 if(!message){
   throw new SyntaxError("User message is missing.")
-  console.log(`the plain message is ${message}`
+  console.log(`the plain message is ${message}\n`)
 }
 
 if(!coefficients && !grade){
@@ -30,13 +36,13 @@ if(!coefficients && !grade){
 
 if(grade <= 24 && grade >= 2){
 
-  coefficients = selectByGrade[grade];
-  console.log(`grade specified wikipedia polynomy with max period: ${coefficients}`)
+  coefficients = selectByGrade[grade].coefficients;
+  console.log(`Coefficients: ${coefficients.toString(2)}\n`)
 
 } else if(coefficients) {
 
   coefficients= coefficients.split(',').map(str=>parseInt(str.trim(),2))
-  console.log(`using specified coefficients: ${coefficients}`)
+  console.log(`using specified coefficients: ${coefficients.toString(2)}\n`)
 }
 
 const binaryMsg = message
@@ -46,6 +52,6 @@ const binaryMsg = message
     return parseInt(binaryLetter,2)
     })
 
-console.log(`The binary message is ${binaryMsg}`)
+console.log(`The binary message is ${binaryMsg}\n`)
 
-export default { binaryMsg, coefficients }
+export { binaryMsg, coefficients }
