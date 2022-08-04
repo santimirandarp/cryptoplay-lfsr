@@ -4,22 +4,18 @@
 
 import { binaryMsg, coefficients as cf } from "./config.js";
 
-/*
 let key = initialRandomBinaryKey(cf.length - 1)
 
-if(cf){
-
-} else if( !cf && p ) { 
+if (!cf) {
+  throw new Error("Problem finding the coefficients")
 }
 
-console.log(binaryMsg)// logs in decimal
-
-
-  // extend key to binaryMsg.length or encode with it if it is shorter
+// extend key to binaryMsg.length or encode with it if it is shorter
 
 if(binaryMsg.length < key.length){
   //encode bit by bit using bitwise operators
   // function 'binary encrypt'
+ 
 }
 
 else {
@@ -28,4 +24,3 @@ else {
   // and place the result first in the key
   //'binary encrypt'
 }
-*/
