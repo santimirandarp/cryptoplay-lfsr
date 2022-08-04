@@ -54,10 +54,11 @@ if(grade <= 24 && grade >= 2){
 
 const binaryMsg = message
 .split('')
-.map(letter => { 
-    const binaryLetter = letter.charCodeAt().toString(2);
-    return parseInt(binaryLetter,2)
-    })
+.map(symbol => symbol.charCodeAt().toString(2))
+.join("")
+.split('')
+.map(str => parseInt(str,2))
+
 
 console.log(`The binary message is ${binaryMsg}\n`)
 
