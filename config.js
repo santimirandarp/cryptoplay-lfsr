@@ -1,26 +1,42 @@
-const config { 
+/* coefficients from high to low
+ * for example 10001
+ * is 1x^4 +  0x^3 + 0x^2 + 0x + 1
+ */ 
+import selectByGrade from 'wikiPolys'; // (idea)
+
+// configuration for the cli utility
+const config =  { 
   importMeta: import.meta, 
   flags:{
-    polynomy:{type:'string', alias:'p'},//write polynomy as csv string, low to high
-    grade:{type:'number', alias:'g'},//or a grade from 0 to ?? for the maximum period polynomy from wikipedia
-    message: {type:'string', alias:'m'}//message from user
+    coefficients: { type:'string', alias:'c' },//write polynomy as csv string, low to high
+    grade: { type:'string', alias:'g' },//or a grade from 0 to ?? for the maximum period polynomy from wikipedia
+    message: { type:'string', alias:'m' }//message from user
     }
   }
 
 
-//import selectByGrade from 'wikiPolys'; (just an idea, we create an object with the ones w maximum
-//period)
-
-
 //set up of the CLI parser
-const { message, polynomial, grade } = meow("parsing...", config).flags
+const { message, coefficients, grade } = meow("parsing...", config).flags
 
 if(!message){
   throw new SyntaxError("User message is missing.")
+  console.log(`the plain message is ${message}`
 }
 
-if(!p && !grade){
+if(!coefficients && !grade){
   throw new SyntaxError("Either polynomyal or grade must be specified.")
+}
+
+
+if(grade <= 24 && grade >= 2){
+
+  coefficients = selectByGrade[grade];
+  console.log(`grade specified wikipedia polynomy with max period: ${coefficients}`)
+
+} else if(coefficients) {
+
+  coefficients= coefficients.split(',').map(str=>parseInt(str.trim(),2))
+  console.log(`using specified coefficients: ${coefficients}`)
 }
 
 const binaryMsg = message
@@ -30,4 +46,6 @@ const binaryMsg = message
     return parseInt(binaryLetter,2)
     })
 
-export default { binaryMsg, polynomial, grade }
+console.log(`The binary message is ${binaryMsg}`)
+
+export default { binaryMsg, coefficients }

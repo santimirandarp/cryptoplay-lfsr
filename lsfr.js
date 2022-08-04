@@ -1,19 +1,19 @@
 #!/usr/bin/env node
 
-//LSFR partial, silly, slow, wrong etc. try in Javascript
-//import selectByGrade from 'wikiPolys'; // (idea)
-import { binaryMsg, polynomy:p, grade } from "./config.js";
+// LSFR
 
-let polynomial;
+import { binaryMsg, coefficients:cf } from "./config.js";
 
-if( grade ) polynomial = selectByGrade[`${grade}`]
 
-else if( p ) poly = polynomyal.split(',').map(str=>parseInt(str,2))
+let key = initialRandomBinaryKey(polynomial.length - 1)
 
+if(cf){
+
+} else if( !cf && p ) { 
+}
 
 console.log(binaryMsg)// logs in decimal
 
-let key = initialRandomBinaryKey(polynomial.length - 1)
 
   // extend key to binaryMsg.length or encode with it if it is shorter
 
