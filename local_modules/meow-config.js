@@ -3,7 +3,6 @@
 export default {
   importMeta: import.meta,
   flags: {
-
     /* decrypt message, needs "key".*/
     decrypt: { type: "string", alias: "d" },
 
@@ -16,22 +15,21 @@ export default {
     */
     coefficients: { type: "string", alias: "c" },
 
-    /* 
+    /*
      *  Grade, 2 to 24, taken from wikipedia (max period).
      */
-    degree: { type: "string", alias: "g" },
+    degree: { type: "number", alias: "g" },
 
     /* 
     acts as true random generator, binary string
     */
-    key: { type: "string", alias: "k", isRequired:true },
-
+    key: { type: "string", alias: "k", isRequired: true },
   },
 
-    /*
+  /*
     print some examples and redirect to github/readme
     */
-   help:`
+  help: `
 
    Usage:
     $ lfsr -m <message> -k <key> -g <degree 2-24>
@@ -47,6 +45,5 @@ export default {
  
    Info
     Check Readme or see https://github.com/santimirandarp/crypto-lfsr/README.md
-`
-   
-
+`,
+};
