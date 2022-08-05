@@ -4,7 +4,7 @@ import meow from "meow";
 //local
 import config from "./meow-config.js";
 import selectByDegree from "./wikiPolys.js";
-import { textToBinary, coeffToBinaryArray } from "./utils.js";
+import { textToBinary, prepareKey, coeffToBinaryArray } from "./utils.js";
 /**
  * The user types a command, we parse the options
  * using "meow" (it isnt complicated to do it manually)

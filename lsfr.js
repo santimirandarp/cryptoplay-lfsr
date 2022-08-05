@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// LSFR
+// Beginner implementation of lfsr in javascript
 
 import { msgLength, binaryMsg, /*coefficients as cf,*/ key } from "./local_modules/set-up.js";
 
@@ -16,10 +16,10 @@ if (msgLength <= key.length) {
   const length = symbol.toString(2).length; 
   const keyOfSymbolLength = key.slice(total, total+length).join('');
   const cipherSymbol = symbol ^ parseInt(keyOfSymbolLength,2)
-  cipherText.push(cipherSymbol);
+  cipherText.push(String.fromCharCode(cipherSymbol));
   total += length
 }
- console.log(cipherText)
+ console.log(cipherText.join(""))
 } else {
   // extend 'key' to length of 'binaryMsg'
   // for this we do a vector vector product of P * S.slice[0,P.length]
