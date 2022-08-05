@@ -3,9 +3,6 @@
 export default {
   importMeta: import.meta,
   flags: {
-    /* decrypt message.*/
-    decrypt: { type: "boolean", alias: "d" },
-
     /* plain text */
     message: { type: "string", alias: "m", isRequired: true },
 
