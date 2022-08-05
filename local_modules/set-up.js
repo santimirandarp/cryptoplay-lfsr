@@ -27,15 +27,12 @@ import { textToBinary, coeffToBinaryArray } from "./utils.js";
  * The cipher encrypts and decrypts with the same operation.
  *
  * That is it for this cipher.
-*/
+ */
 const flags = meow(config).flags;
 
 let { coefficients, key } = flags;
-const { message, degree, decrypt } = flags;
+const { relax, message, degree, decrypt } = flags;
 
-if (!message) {
-  throw new SyntaxError("User message is missing.");
-}
 
 if (degree && degree <= 24 && degree >= 2) {
   coefficients = coeffToBinaryArray(selectByDegree[degree].coefficients, '')
@@ -43,32 +40,23 @@ if (degree && degree <= 24 && degree >= 2) {
   coefficients = coeffToBinaryArray(coefficients,',')
 } else {
   throw new SyntaxError(
-    "Either CSV-coefficients or degree (2 to 24) must be specified."
-  );
+      "Either CSV-coefficients or degree (2 to 24) must be specified."
+      );
 }
 
 //facilitates operations later on
 coefficients.reverse();
+// Allow the key to be larger than the polynomyal 
+// we start degree-units from the end of it, easy.
+// key does not need to be reverted, 
+// the period depends only in the polynomyal.
+key = prepareKey(key, coefficients.length, relax); 
 
- key = key
-    .split("")
-    .slice(0, coefficients.length)
-    .reverse()
-    .map(str => {
-      const res = parseInt(str, 2);
-      if (Number.isNaN(res)) {
-        throw new TypeError(
-          `Only 0s or 1s are allowed for the key. Found ${str}`
-        );
-      }
-     return res
-    });
-
-  if (key.length !== coefficients.length) {
-    throw new Error(
+if (key.length < coefficients.length) {
+  throw new Error(
       "Initial key length can not be shorter than the coefficients length."
-    );
-  }
+      );
+}
 
 
 const [binaryMsg, msgLength] = textToBinary(message); // array of array of symbols as binary;

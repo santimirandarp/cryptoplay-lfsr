@@ -25,6 +25,8 @@ export default {
     */
     key: { type: "string", alias: "k", isRequired: true },
   },
+    /* allows keys >= degree (enforce same length otherwise) */ 
+    relax: { type: "boolean", alias: "r" }
 
   /*
     print some examples and redirect to github/readme

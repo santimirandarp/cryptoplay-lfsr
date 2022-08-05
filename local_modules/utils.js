@@ -21,3 +21,24 @@ export function coeffToBinaryArray(binString,splitAt) {
       return res;
     });
 }
+
+/*
+ * The key is a string of 0s and 1s
+ * Relax allows longer than the degree of the polynomyal 
+ * but not shorter.
+ */
+export function prepareKey(key, length, relax){
+
+key = key.split("")
+
+if(!relax) key = key.slice(0,length)
+
+return key.map( str => {
+      const res = parseInt(str, 2);
+      if (Number.isNaN(res)) {
+      throw new TypeError( `Key uses 0s and 1s. Found ${str}`);
+      }
+      return res
+      });
+
+}
