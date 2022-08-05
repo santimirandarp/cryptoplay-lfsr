@@ -1,6 +1,4 @@
-
 import meow from "meow";
-
 
 import config from "./meow-config.js";
 import polynomials from "./wikiPolys.js";

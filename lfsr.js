@@ -8,26 +8,22 @@ import { extendKey, encryptDecrypt } from "./local_modules/utils.js";
 /** stream-cipher using lfsr as PRNG */
 export function lfsrStreamCipher(binaryCharCodes, key, coefficients){
 
-/* encrypted/decrypted msg */
 let result;
 
-/* number of bits in message */
-let msgLength = 0;
-binaryCharCodes.forEach(symbol => msgLength += symbol.length)
-
+let msgBitLength = 0;
+binaryCharCodes.forEach(symbol => msgBitLength += symbol.length)
 
 // 1. Reversing key and coefficients wont alter the network (and the output bit)
 // 2. newBit is pushed to the array.
-
 key = key.reverse()
-if (msgLength <= key.length) {
+if (msgBitLength <= key.length) {
 
   result = encryptDecrypt(binaryCharCodes, key);
 
 } else {
 
   const cfs = coefficients.reverse()
-  const extendedKey = extendKey(key, cfs, msgLength)
+  const extendedKey = extendKey(key, cfs, msgBitLength)
   result = encryptDecrypt(binaryCharCodes, extendedKey) 
 
 }

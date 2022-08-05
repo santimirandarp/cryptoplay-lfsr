@@ -43,7 +43,7 @@ export function textToCharCodes(msg) {
 export function setKeyFromInput(key, length, relax) {
   key = key.split("");
   if (!relax) key = key.slice(0, length);
-  return key.map(str => binaryStringToBinaryNumber(str));
+  return key.map((str) => binaryStringToBinaryNumber(str));
 }
 
 /**
@@ -55,12 +55,9 @@ export function encryptDecrypt(msg, key) {
   let cipherText = [];
   for (let i = 0; i < msg.length; i++) {
     const symbol = msg[i];
-    const cipherSymbol = symbol
-      .map(bit => bit ^ key[lastBit++])
-      .join("")
-   const charCode = parseInt(cipherSymbol,2);
-    cipherText
-      .push(String.fromCharCode(charCode));
+    const cipherSymbol = symbol.map((bit) => bit ^ key[lastBit++]).join("");
+    const charCode = parseInt(cipherSymbol, 2);
+    cipherText.push(String.fromCharCode(charCode));
   }
   return cipherText.join("");
 }
@@ -70,7 +67,6 @@ export function encryptDecrypt(msg, key) {
  * extending the key to the message length
  */
 export function extendKey(key, coefficients, msgLength) {
-console.log(msgLength)
   while (key.length < msgLength) {
     let newKeyItem = 0;
     let index = 0;
