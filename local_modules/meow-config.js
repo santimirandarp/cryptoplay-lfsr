@@ -7,7 +7,7 @@ export default {
     decrypt: { type: "boolean", alias: "d" },
 
     /* plain text */
-    message: { type: "string", alias: "m", isRequired:true },
+    message: { type: "string", alias: "m", isRequired: true },
 
     /* 
     csv string, high to low 
@@ -26,8 +26,8 @@ export default {
     key: { type: "string", alias: "k", isRequired: true },
   },
 
-    /* allows keys >= degree (enforce same length otherwise) */ 
-    relax: { type: "boolean", alias: "r" },
+  /* allows keys >= degree (enforce same length otherwise) */
+  relax: { type: "boolean", alias: "r" },
 
   /*
     print some examples and redirect to github/readme
