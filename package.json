@@ -4,8 +4,8 @@
   "description": "Play with a stream cipher encrypting and decrypting text.",
   "main": "index.js",
   "scripts": {
-    "pretty": "prettier -w */*.js",
-    "lint": "eslint --fix */*.js"
+    "pretty": "prettier -w **/*.js",
+    "lint": "eslint --fix **/*.js"
   },
   "author": "Santiago Miranda <misterybodon@protonmail.com>",
   "license": "MIT",
