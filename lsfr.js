@@ -2,14 +2,24 @@
 
 // LSFR
 
-import { binaryMsg as msg, /*coefficients as cf,*/ key } from "./local_modules/set-up.js";
+import { msgLength, binaryMsg, /*coefficients as cf,*/ key } from "./local_modules/set-up.js";
 
 
-let cipherText;
+let cipherText = [ ] ;
 
-if (msg.length < key.length) {
-    cipherText = msg.map( (bit,index) => bit ^ key[index] )
-    console.log(cipherText)
+if (msgLength <= key.length) {
+
+ let total = 0;
+
+ for(let i=0; i < binaryMsg.length; i++){
+  const symbol = binaryMsg[i];
+  const length = symbol.toString(2).length; 
+  const keyOfSymbolLength = key.slice(total, total+length).join('');
+  const cipherSymbol = symbol ^ parseInt(keyOfSymbolLength,2)
+  cipherText.push(cipherSymbol);
+  total += length
+}
+ console.log(cipherText)
 } else {
   // extend 'key' to length of 'binaryMsg'
   // for this we do a vector vector product of P * S.slice[0,P.length]

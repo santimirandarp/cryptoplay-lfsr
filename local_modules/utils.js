@@ -1,13 +1,16 @@
 export function textToBinary(msg) {
-  return msg
+  // each character is now an binary array of numbers
+  const binaryString = msg
     .split("")
-    .map((symbol) => symbol.charCodeAt().toString(2))
-    .join("")
-    .split("")
-    .map((str) => parseInt(str, 2));
+    .map(symbol => symbol
+    .charCodeAt()
+    .toString(2))
+ const binaryMsg = binaryString.map(symbol => parseInt(symbol, 2))
+ return [ binaryMsg, binaryString.join(',').length ] 
+
 }
 
-export function parseCoefficients(binString,splitAt) {
+export function coeffToBinaryArray(binString,splitAt) {
   return binString.trim()
     .split(splitAt)
     .map((str) => {

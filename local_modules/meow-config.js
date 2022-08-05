@@ -3,11 +3,11 @@
 export default {
   importMeta: import.meta,
   flags: {
-    /* decrypt message, needs "key".*/
-    decrypt: { type: "string", alias: "d" },
+    /* decrypt message.*/
+    decrypt: { type: "boolean", alias: "d" },
 
     /* plain text */
-    message: { type: "string", alias: "m" },
+    message: { type: "string", alias: "m", isRequired:true },
 
     /* 
     csv string, high to low 
