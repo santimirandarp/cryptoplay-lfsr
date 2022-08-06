@@ -4,16 +4,6 @@ The linear feedback shift register is a pseudo-random number-generator method.
 
 It uses a _seed_ to generate the key for a stream cipher (symmetric cipher). Hence, the _seed_ must be the same for encrypting and decrypting.
 
-## Options
-
-* `-p <path to file>`
-* `-d <number 2-22>`
-* `-s <binaryseed>`
-* `-c <csv coefficients>`
-* `--help`
-
-By `<csv coefficients>` I mean something like `001001` for degree 6, etc.
-
 ## Steps
 1. Download
 ```
@@ -38,3 +28,13 @@ $ ./lfsr.js -p encrypted.txt -s 101010010010111101010010101 -d 24 > decrypted.tx
 
 
 Takes nothing for small files.
+
+## Options
+
+* `-p <path to file>`
+* `-d <number 2-22>`
+* `-s <binaryseed>`
+* `-c <csv coefficients>`
+* `--help`
+
+By `<csv coefficients>` I mean something like `001001` for degree 6, etc.
