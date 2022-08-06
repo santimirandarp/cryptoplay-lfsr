@@ -2,7 +2,7 @@
 
 The linear feedback shift register is a pseudo-random number-generator method. 
 
-It uses a _seed_ to generate the key for a stream cipher. 
+It uses a _seed_ to generate the key for a stream cipher (symmetric cipher). Hence, the _seed_ must be the same for encrypting and decrypting.
 
 An example:
 ```

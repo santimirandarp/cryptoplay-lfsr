@@ -29,7 +29,7 @@ export default {
   help: `
 
    Usage:
-    $ lfsr -m <message> -k <key> -g <degree 2-24>
+    $ lfsr -p <path to file> -s <seed> -d <degree 2-24>
  
    Options
    --path, -p file to be encoded or decoded.
