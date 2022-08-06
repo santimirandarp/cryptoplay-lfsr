@@ -6,11 +6,11 @@ It uses a _seed_ to generate the key for a stream cipher (symmetric cipher). Hen
 
 ## Options
 
-* `-p <path to file>` or `--path <path to file>`
-* `-d <number 2-22>` or `--degree <number 2-22>`
-* `-s <binaryseed>` or `--seed <binarykey>`
-* `-c <csv coefficients>` or `--coefficients <csv coefficients>`
-* `-h` or `--help`
+* `-p <path to file>`
+* `-d <number 2-22>`
+* `-s <binaryseed>`
+* `-c <csv coefficients>`
+* `--help`
 
 By `<csv coefficients>` I mean something like `001001` for degree 6, etc.
 
