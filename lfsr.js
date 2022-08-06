@@ -2,43 +2,47 @@
 
 // Beginner implementation of lfsr in javascript
 
-import { message, coefficients, key } from "./local_modules/set-up.js";
+import { message, coefficients, seed } from "./local_modules/set-up.js";
 import {
   extendKey,
   encryptDecrypt,
-  setKeyFromInput,
+  formatKey,
   textToCharCodes,
   charCodeToBinaryArray,
 } from "./local_modules/utils.js";
 
-/** stream-cipher using lfsr as PRNG */
-export function lfsrStreamCipher(message, key, coefficients) {
+/** 
+ * Transforms input message using a random seed.
+ * User is supposed to use the CLI, the function does not 
+ * search Wikipedia's coefficients, for example.
+ * @param message -  user input message as a string.
+ * @param seed - strings of 1s and 0s used as a true random number gen.
+ * @param coefficients -  polynomial coefficients.
+ */
+export function lfsrStreamCipher(message, seed, coefficients) {
   let result;
 
-  /** set up the keys binary array */
-  key = setKeyFromInput(key, coefficients.length);
+  /** set up the seeds binary array */
+  const key = formatKey(seed, coefficients.length);
 
   /* get the message to binary form */
-  let msgBitLength = 0;
   const binaryCharCodes = textToCharCodes(message).map((cc) =>
     charCodeToBinaryArray(cc)
   );
-  binaryCharCodes.forEach((symbol) => (msgBitLength += symbol.length));
 
-  // 1. Reversing key and coefficients wont alter the network (and the output bit)
+  const msgBitLength = binaryCharCodes.reduce((acc, item) => acc + item.length, 0);
+
+  // 1. Reversing seed and coefficients wont alter the network (and the output bit)
   // 2. newBit is pushed to the array.
-  key = key.reverse();
-  if (msgBitLength <= key.length) {
-    result = encryptDecrypt(binaryCharCodes, key);
+  let reversedKey = [...key].reverse();
+  if (msgBitLength <= reversedKey.length) {
+    result = encryptDecrypt(binaryCharCodes, reversedKey);
   } else {
-    const cfs = [...coefficients].reverse();
-    const extendedKey = extendKey(key, cfs, msgBitLength);
-    result = encryptDecrypt(binaryCharCodes, extendedKey);
+    const reversedCoefficients = [...coefficients].reverse();
+    const extendedRKey = extendKey(reversedKey, reversedCoefficients, msgBitLength);
+    result = encryptDecrypt(binaryCharCodes, extendedRKey);
   }
   return result;
-}
+} 
 
-const cipherText = lfsrStreamCipher(message, key, coefficients);
-const clearText = lfsrStreamCipher(cipherText, key, coefficients);
-
-console.log(cipherText, clearText);
+console.log(lfsrStreamCipher(message,seed,coefficients));

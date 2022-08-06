@@ -8,14 +8,12 @@ An example:
 ```
 // seed can not be shorter than -d value 
 
-$ ./lfsr.js -p README.md -s 101010010010111101010010101 -d 24 > encrypted.txt
+$ ./lfsr.js -m "nk" -s 101010010010111101010010101 -d 24
+|D nk
 
-$ ./lfsr.js -p encrypted.txt -s 101010010010111101010010101 -d 24 > decrypted.txt
+$ ./lfsr.js -m "shelra nk" -s 101010010010111101010010101 -d 24
+aGwyra!RK shelra nk
 ```
-
-`decrypted.txt` will be the same than `README.md`. 
-
-I'd say the script is horrible but JS is fast, encryption takes nothing for small files.
 
 ## Options
 
@@ -25,4 +23,7 @@ I'd say the script is horrible but JS is fast, encryption takes nothing for smal
 * `-c <csv coefficients>` or `--coefficients <csv coefficients>`
 * `-h` or `--help`
 
+ _plaintext_ or _ciphertext_ must be double or single-quoted to avoid problems. 
+
 By `<csv coefficients>` I mean something like `001001` for degree 6, etc.
+

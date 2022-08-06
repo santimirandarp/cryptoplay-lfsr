@@ -40,10 +40,10 @@ export function textToCharCodes(msg) {
  * Relax allows longer than the degree of the polynomyal
  * but not shorter.
  */
-export function setKeyFromInput(key, length, relax) {
-  key = key.split("");
-  if (!relax) key = key.slice(0, length);
-  return key.map((str) => binaryStringToBinaryNumber(str));
+export function formatKey(seed, length, relax) {
+  seed = seed.split("");
+  if (!relax) seed = seed.slice(0, length);
+  return seed.map((str) => binaryStringToBinaryNumber(str));
 }
 
 /**

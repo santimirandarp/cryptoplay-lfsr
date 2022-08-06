@@ -4,7 +4,7 @@ export default {
   importMeta: import.meta,
   flags: {
     /* plain text */
-    message: { type: "string", alias: "m", isRequired: true },
+    path: { type: "string", alias: "p", isRequired: true },
 
     /* 
     csv string, high to low 
@@ -15,16 +15,13 @@ export default {
     /*
      *  Grade, 2 to 24, taken from wikipedia (max period).
      */
-    degree: { type: "number", alias: "g" },
+    degree: { type: "number", alias: "d" },
 
     /* 
     acts as true random generator, binary string
     */
-    key: { type: "string", alias: "k", isRequired: true },
+    seed: { type: "string", alias: "s", isRequired: true },
   },
-
-  /* allows keys >= degree (enforce same length otherwise) */
-  relax: { type: "boolean", alias: "r" },
 
   /*
     print some examples and redirect to github/readme
@@ -35,11 +32,10 @@ export default {
     $ lfsr -m <message> -k <key> -g <degree 2-24>
  
    Options
-   --decrypt, -d binary message as a string i.e '000011101010...'. -m and -d are mutually exclusive.
-   --message, -m message to be encoded as text. -m and -d are mutually exclusive.
+   --path, -p file to be encoded or decoded.
    --coefficients, -c comma separated value for the polynomial coefficients
-   --degree, -g Uses maximum-period coefficients (wikipedia). Overrides -c if present. 
-   --key, -k Needed to start the 'flip-flop values', acts as TRG. 
+   --degree, -d Uses maximum-period coefficients (wikipedia). Overrides -c if present. 
+   --seed, -s Needed to start the 'flip-flop values', acts as TRG. 
              Must be a binary number of length 2^g where g is the degree. 
              If larger we chop it, if shorter it will error out.
  
