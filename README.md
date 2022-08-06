@@ -36,4 +36,5 @@ $ ./lfsr.js -p encrypted.txt -s 101010010010111101010010101 -d 24 > decrypted.tx
 
 `decrypted.txt` will be the same than `README.md`. 
 
-I'd say the script is horrible but JS is fast, encryption takes nothing for small files.
+
+Takes nothing for small files.
