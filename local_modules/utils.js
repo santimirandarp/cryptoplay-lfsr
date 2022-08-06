@@ -55,8 +55,15 @@ export function encryptDecrypt(msg, key) {
   let cipherText = [];
   for (let i = 0; i < msg.length; i++) {
     const symbol = msg[i];
-    const cipherSymbol = symbol.map((bit) => bit ^ key[lastBit++]).join("");
-    const charCode = parseInt(cipherSymbol, 2);
+    const newSymbol = symbol
+    .map((bit,i) => { 
+      if(i===0) {/* Can't change the first bit or method fails */
+        return bit
+      } 
+      return bit ^ key[lastBit++]
+    })
+   .join("")
+    const charCode = parseInt(newSymbol, 2);
     cipherText.push(String.fromCharCode(charCode));
   }
   return cipherText.join("");

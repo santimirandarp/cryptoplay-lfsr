@@ -31,14 +31,14 @@ export function lfsrStreamCipher(message, key, coefficients) {
   if (msgBitLength <= key.length) {
     result = encryptDecrypt(binaryCharCodes, key);
   } else {
-    const cfs = coefficients.reverse();
+    const cfs = [...coefficients].reverse();
     const extendedKey = extendKey(key, cfs, msgBitLength);
     result = encryptDecrypt(binaryCharCodes, extendedKey);
   }
   return result;
 }
 
-const encrypt = lfsrStreamCipher(message, key, coefficients);
-const decrypt = lfsrStreamCipher(encrypt, key, coefficients);
+const cipherText = lfsrStreamCipher(message, key, coefficients);
+const clearText = lfsrStreamCipher(cipherText, key, coefficients);
 
-console.log(encrypt, decrypt);
+console.log(cipherText, clearText);
