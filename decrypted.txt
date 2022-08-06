@@ -2,18 +2,20 @@
 
 The linear feedback shift register is a pseudo-random number-generator method. 
 
-It uses a _seed_ to generate the key for a stream cipher. 
+It uses a _seed_ to generate the key for a stream cipher (symmetric cipher). Hence, the _seed_ must be the same for encrypting and decrypting.
 
 An example:
 ```
 // seed can not be shorter than -d value 
 
-$ ./lfsr.js -m "nk" -s 101010010010111101010010101 -d 24
-|D nk
+$ ./lfsr.js -p README.md -s 101010010010111101010010101 -d 24 > encrypted.txt
 
-$ ./lfsr.js -m "shelra nk" -s 101010010010111101010010101 -d 24
-aGwyra!RK shelra nk
+$ ./lfsr.js -p encrypted.txt -s 101010010010111101010010101 -d 24 > decrypted.txt
 ```
+
+`decrypted.txt` will be the same than `README.md`. 
+
+I'd say the script is horrible but JS is fast, encryption takes nothing for small files.
 
 ## Options
 
@@ -23,7 +25,5 @@ aGwyra!RK shelra nk
 * `-c <csv coefficients>` or `--coefficients <csv coefficients>`
 * `-h` or `--help`
 
- _plaintext_ or _ciphertext_ must be double or single-quoted to avoid problems. 
-
 By `<csv coefficients>` I mean something like `001001` for degree 6, etc.
-
+
