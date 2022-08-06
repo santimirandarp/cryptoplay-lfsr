@@ -26,6 +26,7 @@ npm i
 ```
 Because the script uses NodeJS, both `npm` and `node` need to be installed. [See
 here.](https://nodejs.org/en/download/).
+
 3. Running it (example):
 ```
 $ ./lfsr.js -p README.md -s 101010010010111101010010101 -d 24 > encrypted.txt
